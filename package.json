@@ -1,0 +1,33 @@
+{
+    "name": "ona-api",
+    "version": "1.0.0",
+    "description": "Ona Api",
+    "main": "ona.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/llastkrakw/ona-api.git"
+    },
+    "author": "llastkrakw",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/llastkrakw/ona-api/issues"
+    },
+    "homepage": "https://github.com/llastkrakw/ona-api#readme",
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "buildpacks": [{
+            "url": "https://github.com/heroku/heroku-buildpack-nodejs.git"
+        },
+        {
+            "url": "heroku/nodejs"
+        }
+    ],
+    "engines": {
+        "node": "12.x",
+        "npm": "6.x"
+    }
+}
