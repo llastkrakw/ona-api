@@ -19,6 +19,8 @@
     },
     "homepage": "https://github.com/llastkrakw/ona-api#readme",
     "dependencies": {
+        "cookie-parser": "^1.4.5",
+        "debug": "^4.1.1",
         "express": "^4.17.1",
         "morgan": "^1.10.0"
     },
