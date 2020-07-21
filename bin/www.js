@@ -21,6 +21,7 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+
 /**
  * Listen on provided port, on all network interfaces.
  */
@@ -35,6 +36,8 @@ server.on('listening', onListening);
 
 function normalizePort(val) {
     var port = parseInt(val, 10);
+
+    console.log(val);
 
     if (isNaN(port)) {
         // named pipe
