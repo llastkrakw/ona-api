@@ -1,24 +1,6 @@
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://djouendjeu_emma:TIMBILSTE12@cluster0.js0ku.mongodb.net/onadb?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const connectionString = "mongodb+srv://djouendjeu_emma:TIMBILSTE12@cluster0.js0ku.mongodb.net/onadb?retryWrites=true&w=majority";
 
-/*client.connect((err, db) => {
+let mongoose = require('mongoose');
+mongoose.connect(`${connectionString}`, { autoIndex: false , useNewUrlParser: true, useUnifiedTopology: true });
 
-    if (err) throw err;
-    const db_fetch = db.db('onadb');
-    // perform actions on the collection object
-
-    const collection = db_fetch.collection('test');
-
-    const user = collection.findOne({}, (err, result) => {
-
-        if (err) throw err
-
-        console.log(result._id);
-
-    })
-    console.log('connected');
-    //db.close();
-});*/
-
-module.exports = client;
+exports.connect = () => mongoose.connection;
