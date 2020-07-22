@@ -19,14 +19,16 @@
     },
     "homepage": "https://github.com/llastkrakw/ona-api#readme",
     "dependencies": {
+        "atob": "^2.1.2",
+        "btoa": "^1.2.1",
         "cookie-parser": "^1.4.5",
         "debug": "^4.1.1",
         "express": "^4.17.1",
+        "is-url": "^1.2.4",
         "moment": "^2.27.0",
         "mongodb": "^3.5.9",
         "mongoose": "^5.9.25",
         "morgan": "^1.10.0",
-        "pg": "^8.3.0",
         "url": "^0.11.0"
     },
     "buildpacks": [
