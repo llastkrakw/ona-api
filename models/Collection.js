@@ -3,41 +3,42 @@ var Schema = mongoose.Schema;
 
 var CollectionSchema = new Schema({
 
-    title : {
-        type : String,
-        required : true
+    title: {
+        type: String,
+        required: true
     },
 
-    description : {
-        type : String,
-        required : true
+    description: {
+        type: String,
+        required: true
     },
 
-    author : {
-        type : Schema.Types.ObjectId,
-        ref : 'User',
-        required : true
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     },
 
-    groups :  [{type : Schema.Types.ObjectId, ref: 'Group'}],
+    groups: [{ type: Schema.Types.ObjectId, ref: 'Group' }],
 
-    users : [{type : Schema.Types.ObjectId, ref: 'User'}],
+    users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 
-    links : [{type : Schema.Types.ObjectId, ref: 'Link'}],
+    links: [{ type: Schema.Types.ObjectId, ref: 'Link' }],
 
-    createAt : {
-        type : Date,
-        required : true
+    createAt: {
+        type: Date,
+        required: true,
+        default: Date.now()
     },
 
-    likes : {
-        type : Number,
-        default : 0
+    likes: {
+        type: Number,
+        default: 0
     },
 
-    visibility : {
-        type : Boolean,
-        default : true
+    visibility: {
+        type: Boolean,
+        default: true
     }
 
 });

@@ -3,25 +3,35 @@ var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
 
-    username : {
-        type : String,
-        require : true
+    username: {
+        type: String,
+        require: true
     },
 
-    email : {
-        type : String,
-        require : true
+    email: {
+        type: String,
+        require: true,
+        unique: true
     },
 
-    collections : [{type : Schema.Types.ObjectId, ref: 'Collection'}],
+    password: {
+        desc: "user password",
+        trim: true,
+        type: String,
+        required: false,
+        select: false,
+    },
 
-    links : [{type : Schema.Types.ObjectId, ref: 'Link'}],
+    collections: [{ type: Schema.Types.ObjectId, ref: 'Collection' }],
 
-    groups :  [{type : Schema.Types.ObjectId, ref: 'Group'}],
+    links: [{ type: Schema.Types.ObjectId, ref: 'Link' }],
 
-    createAt : {
-        type : Date,
-        required : true
+    groups: [{ type: Schema.Types.ObjectId, ref: 'Group' }],
+
+    createAt: {
+        type: Date,
+        required: true,
+        default: Date.now()
     }
 
 });
