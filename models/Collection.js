@@ -5,12 +5,14 @@ var CollectionSchema = new Schema({
 
     title: {
         type: String,
-        required: true
+        required: true,
+        trim : true
     },
 
     description: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
 
     author: {
@@ -18,8 +20,6 @@ var CollectionSchema = new Schema({
         ref: 'User',
         required: true
     },
-
-    groups: [{ type: Schema.Types.ObjectId, ref: 'Group' }],
 
     links: [{ type: Schema.Types.ObjectId, ref: 'Link' }],
 
