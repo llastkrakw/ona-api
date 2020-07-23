@@ -19,8 +19,8 @@ exports.selectAll =  async (req, res) => {
 
             User.find({}).then((data) => {
                 if (!data)
-                res.status(404).send({ message: "Not found Users"});
-              else res.send(data);
+                   res.status(404).send({ message: "Not found Users"});
+                else res.send(data);
             });
             
             
@@ -43,7 +43,7 @@ exports.selectUser = async (req, res) => {
 
         ///res.send("NOT IMPLEMENTED : select user " + req.params.id);
 
-        const id = require('mongoose').Types.ObjectId(req.params.id);
+        const id = req.params.id;
 
         db.then(() => {
             console.log("Connected to the database!");

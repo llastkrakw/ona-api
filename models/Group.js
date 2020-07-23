@@ -34,4 +34,4 @@ var GroupSchema = new Schema({
     }
 });
 
-exports.Group = mongoose.model('Group', GroupSchema, groups);
+exports.Group = mongoose.model('Group', GroupSchema, 'groups');

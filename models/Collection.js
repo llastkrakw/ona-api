@@ -42,4 +42,4 @@ var CollectionSchema = new Schema({
 });
 
 
-exports.Collection = mongoose.model('Collection', CollectionSchema, collections);
+exports.Collection = mongoose.model('Collection', CollectionSchema, 'collections');
