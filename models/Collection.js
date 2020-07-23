@@ -21,8 +21,6 @@ var CollectionSchema = new Schema({
 
     groups: [{ type: Schema.Types.ObjectId, ref: 'Group' }],
 
-    users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-
     links: [{ type: Schema.Types.ObjectId, ref: 'Link' }],
 
     createAt: {

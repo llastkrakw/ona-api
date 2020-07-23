@@ -8,6 +8,8 @@ var indexRouter = require('./routes/router');
 
 var app = express();
 
+//app.use(express.json);
+
 // view engine setup
 //app.set('views', `${__dirname}/views`);
 app.set('view engine', 'ejs');

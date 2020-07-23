@@ -1,22 +1,29 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var isURL = require('is-url');
 
 
 var LinkShema = new Schema({
 
     title: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
 
     description: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
 
     url: {
         type: String,
         required: true,
+        trim: true,
+        validate(value) {
+            if (!isURL(value)) throw new Error("Invalid Url")
+        }
     },
 
     shorthen_id: {
@@ -34,8 +41,6 @@ var LinkShema = new Schema({
     collections: [{ type: Schema.Types.ObjectId, ref: 'Collection' }],
 
     groups: [{ type: Schema.Types.ObjectId, ref: 'Group' }],
-
-    users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 
     urlInfo: {
         header: Number,

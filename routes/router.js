@@ -18,31 +18,62 @@ router.get('/', indexController.index);
 
 /* User */
 
-router.get('/users', keycloak.protect(), userController.selectAll);
+router.get('/users', userController.selectAll);
 
-router.get('/users/:id', keycloak.protect(), userController.selectUser);
+router.get('/users/:id', userController.selectUser);
 
-router.get('/users/collections', keycloak.protect(), userController.selectCollections);
+router.post('/users/user', userController.addUser);
 
-router.get('/users/collections/:id', keycloak.protect(), userController.selectCollection);
+router.delete('/users/:id', userController.deleteUser);
 
-router.get('/users/collections/own', keycloak.protect(), userController.selectOwnCollection);
-
-router.get('/users/collections/other', keycloak.protect(), userController.selectOtherCollection);
-
-router.get('/users/group', keycloak.protect(), userController.selectGroups);
-
-router.get('/users/group/:id', keycloak.protect(), userController.selectGroup);
+router.patch('/users/:id', userController.updateUser);
 
 /* Link */
 
+router.get('/links', linkController.selectAll);
+
+router.get('/links/link/:id', linkController.selectLink);
+
+router.post('/links/link', linkController.addLink);
+
+router.delete('/links/link/:id', linkController.deleteLink);
+
+router.patch('/links/link/:id', linkController.updateLink);
 
 /* Collection */
 
+router.get('/collections', collectionController.selectAll);
+
+router.get('/collections/collection/:id', collectionController.selectCollection);
+
+router.post('/collections/collection', collectionController.addCollection);
+
+router.delete('/collections/collection/:id', collectionController.deleteCollection);
+
+router.patch('/collections/collection/:id', collectionController.updateCollection);
 
 /* Group */
 
+router.get('/groups', groupController.selectAll);
+
+router.get('/groups/group/:id', groupController.selectGroup);
+
+router.post('/groups/group', groupController.addGroup);
+
+router.delete('/groups/group/:id', groupController.deleteGroup);
+
+router.patch('/groups/group/:id', groupController.updateGroup);
 
 /* LinkShorthen */
+
+router.get('/shorts', shortenController.selectAll);
+
+router.get('/shorts/short/:id', shortenController.selectShort);
+
+router.post('/shorts/short', shortenController.addShort);
+
+router.delete('/shorts/short/:id', shortenController.deleteShort);
+
+router.patch('/shorts/short/:id', shortenController.updateShort);
 
 module.exports = router;
