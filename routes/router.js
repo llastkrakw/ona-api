@@ -16,7 +16,7 @@ router.use(function(req, res, next) {
 /* GET home page. */
 router.get('/', indexController.index);
 
-router.get('/:hash', indexController.sender);
+router.get('/sh/:hash', indexController.sender);
 
 /* User */
 
