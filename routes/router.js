@@ -16,6 +16,8 @@ router.use(function(req, res, next) {
 /* GET home page. */
 router.get('/', indexController.index);
 
+router.get('/:hash', indexController.sender);
+
 /* User */
 
 router.get('/users', userController.selectAll);
@@ -33,6 +35,10 @@ router.patch('/users/:id', userController.updateUser);
 router.get('/links', linkController.selectAll);
 
 router.get('/links/:id', linkController.selectLink);
+
+//router.get('links/:id/status', linkController.linkStatus);
+
+router.get('/links/:id/short', linkController.linkShorten);
 
 router.post('/links/link', linkController.addLink);
 
