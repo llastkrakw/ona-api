@@ -190,7 +190,7 @@ exports.linkShorten = async (req, res) => {
                    res.status(404).send({ message: "Not found Links"});
 
                 else{
-
+                        var linkdata = data;
                     ShortenLink.findOne({"url" : data.url}).then((data) => {
                         if (data){
                             res.status(406).send({ message: "Ce lien a deja ete raccourcis"});
@@ -198,12 +198,12 @@ exports.linkShorten = async (req, res) => {
                         }
                         else{
 
-                            const mhash = hasher(data.url);
+                            const mhash = hasher(linkdata.url);
                             const shortUrl = urlCtr(mhash);
         
                             console.log(shortUrl);
                 
-                            const shortlink = new ShortenLink({url : data.url, hash : mhash, shortenUrl: shortUrl});
+                            const shortlink = new ShortenLink({url : linkdata.url, hash : mhash, shortenUrl: shortUrl});
                 
                             shortlink.save().then((data) => {
                                 res.send(data);
