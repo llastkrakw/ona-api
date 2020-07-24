@@ -32,48 +32,48 @@ router.patch('/users/:id', userController.updateUser);
 
 router.get('/links', linkController.selectAll);
 
-router.get('/links/link/:id', linkController.selectLink);
+router.get('/links/:id', linkController.selectLink);
 
 router.post('/links/link', linkController.addLink);
 
-router.delete('/links/link/:id', linkController.deleteLink);
+router.delete('/links:id', linkController.deleteLink);
 
-router.patch('/links/link/:id', linkController.updateLink);
+router.patch('/links/:id', linkController.updateLink);
 
 /* Collection */
 
 router.get('/collections', collectionController.selectAll);
 
-router.get('/collections/collection/:id', collectionController.selectCollection);
+router.get('/collections/:id', collectionController.selectCollection);
 
 router.post('/collections/collection', collectionController.addCollection);
 
-router.delete('/collections/collection/:id', collectionController.deleteCollection);
+router.delete('/collections/:id', collectionController.deleteCollection);
 
-router.patch('/collections/collection/:id', collectionController.updateCollection);
+router.patch('/collections/:id', collectionController.updateCollection);
 
 /* Group */
 
 router.get('/groups', groupController.selectAll);
 
-router.get('/groups/group/:id', groupController.selectGroup);
+router.get('/groups/:id', groupController.selectGroup);
 
 router.post('/groups/group', groupController.addGroup);
 
-router.delete('/groups/group/:id', groupController.deleteGroup);
+router.delete('/groups/:id', groupController.deleteGroup);
 
-router.patch('/groups/group/:id', groupController.updateGroup);
+router.patch('/groups/:id', groupController.updateGroup);
 
 /* LinkShorthen */
 
 router.get('/shorts', shortenController.selectAll);
 
-router.get('/shorts/short/:id', shortenController.selectShort);
+router.get('/shorts/:id', shortenController.selectShort);
 
 router.post('/shorts/short', shortenController.addShort);
 
-router.delete('/shorts/short/:id', shortenController.deleteShort);
+router.delete('/shorts/:id', shortenController.deleteShort);
 
-router.patch('/shorts/short/:id', shortenController.updateShort);
+router.patch('/shorts/:id', shortenController.updateShort);
 
 module.exports = router;

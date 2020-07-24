@@ -132,12 +132,21 @@ exports.updateLink = async (req, res) => {
         
         const id = req.params.id;
 
-        Link.findByIdAndUpdate(id, req.body, { useFindAndModify: false}).then((data) => {
-            if (!data)
-                res.status(404).send({ message: "Not found Link with id " + id });
-            else
-                res.send(data);
-        });
+        db.then(() => {
+            console.log("Connected to the database!");
+
+            Link.findByIdAndUpdate(id, req.body, { useFindAndModify: false}).then((data) => {
+                if (!data)
+                    res.status(404).send({ message: "Not found Link with id " + id });
+                else
+                    res.send(data);
+            });
+            
+          })
+          .catch(err => {
+            console.log("Cannot connect to the database!", err);
+            process.exit();
+          });
         
     } catch (error) {
         res.status(500).send(error);

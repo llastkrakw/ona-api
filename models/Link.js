@@ -26,11 +26,6 @@ var LinkShema = new Schema({
         }
     },
 
-    shorthen_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'ShortenLink',
-    },
-
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User',
