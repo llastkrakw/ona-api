@@ -19,7 +19,7 @@ var hasher = (str) => {
 
 var urlCtr = (hash) => {
 
-    return newUrl = url.resolve("http://"+process.env.BASE_URL, hash);
+    return newUrl = url.resolve(process.env.BASE_URL, hash);
 
 }
 
