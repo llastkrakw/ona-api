@@ -5,10 +5,16 @@ var btoa = require('btoa');
 
 var ShortenLinkSchema = new Schema({
 
-    link_id : {
-        type : Schema.Types.ObjectId,
-        ref : 'Link',
+    url : {
+        type : String,
         required : true
+    },
+
+    hash : {
+        type : String,
+        required : true,
+        trim: true,
+        unique: true
     },
 
     shortenUrl : {

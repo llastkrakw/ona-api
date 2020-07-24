@@ -3,8 +3,25 @@ require('dotenv').config()
 
 let mongoose = require('mongoose');
 const Link = require('../models/Link').Link;
+const ShortenLink = require('../models/ShortenLink').ShortenLink;
 const db = mongoose.connect( process.env.DATABASE_URL, { autoIndex: false , useNewUrlParser: true, useUnifiedTopology: true });
 
+const btoa = require('btoa');
+const url = require('url');
+
+var hasher = (str) => {
+
+    var hash = btoa(str);
+    hash = hash.substr(0, 6);
+
+    return hash;
+}
+
+var urlCtr = (hash) => {
+
+    return newUrl = url.resolve("http://"+process.env.BASE_URL, hash);
+
+}
 
 exports.selectAll =  (req, res) => {
 
@@ -153,3 +170,62 @@ exports.updateLink = async (req, res) => {
     }
 
 }
+
+
+exports.linkShorten = async (req, res) => {
+
+    try {
+
+
+        const id = req.params.id;
+        var isOn = false;
+
+        db.then(() => {
+            console.log("Connected to the database!");
+
+
+            Link.findById(id).then((data) => {
+
+                if (!data)
+                   res.status(404).send({ message: "Not found Links"});
+
+                else{
+
+                    ShortenLink.findOne({"url" : data.url}).then((data) => {
+                        if (data){
+                            res.status(406).send({ message: "Ce lien a deja ete raccourcis"});
+                            process.exit(0);
+                        }
+                        else{
+
+                            const mhash = hasher(data.url);
+                            const shortUrl = urlCtr(mhash);
+        
+                            console.log(shortUrl);
+                
+                            const shortlink = new ShortenLink({url : data.url, hash : mhash, shortenUrl: shortUrl});
+                
+                            shortlink.save().then((data) => {
+                                res.send(data);
+                            });
+
+                        }
+                    });
+
+                }
+
+            });
+
+            
+          })
+          .catch(err => {
+            console.log("Cannot connect to the database!", err);
+            process.exit();
+          });
+        
+    } catch (error) {
+        res.status(500).send(error);
+    }
+
+}
+
