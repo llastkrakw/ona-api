@@ -47,7 +47,12 @@ var LinkShema = new Schema({
         type: Number,
         default: 0
     },
-    
+
+    visibility: {
+        type: Boolean,
+        default: true
+    }
+
 });
 
 exports.Link = mongoose.model('Link', LinkShema, 'links');
