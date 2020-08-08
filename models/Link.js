@@ -50,7 +50,7 @@ var LinkShema = new Schema({
 
     visibility: {
         type: Boolean,
-        default: true
+        default: false
     }
 
 });
