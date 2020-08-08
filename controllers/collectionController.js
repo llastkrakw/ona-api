@@ -83,12 +83,9 @@ exports.addCollection = async (req, res) => {
             console.log("Connected to the database!");
 
             const collection = new Collection(req.body);
+            collection.url = giveUrl(collection._id.toString());
 
-            collection.save().then((data) => {
-
-                data.url = giveUrl(data._id.toString());
-                data.save().then((data) => {});
-                
+            collection.save().then((data) => {        
                 res.send(data);
             });
             

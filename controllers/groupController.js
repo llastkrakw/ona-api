@@ -83,13 +83,12 @@ exports.addGroup = async (req, res) => {
             console.log("Connected to the database!");
 
             const group = new Group(req.body);
+            group.url = giveUrl(group._id.toString());
 
             group.save().then((data) => {
 
-                data.url = giveUrl(data._id.toString());
-                data.save().then((data) => {});
+                  res.send(data);
 
-                res.send(data);
             });
             
           })

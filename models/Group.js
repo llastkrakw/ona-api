@@ -23,7 +23,6 @@ var GroupSchema = new Schema({
 
     url: {
         type: String,
-        required: false
     },
 
     members: [{ type: Schema.Types.ObjectId, ref: 'User' }],
