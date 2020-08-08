@@ -21,6 +21,11 @@ var GroupSchema = new Schema({
         required: true
     },
 
+    url: {
+        type: String,
+        required: false
+    },
+
     members: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 
     collections: [{ type: Schema.Types.ObjectId, ref: 'Collection' }],

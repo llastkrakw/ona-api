@@ -3,8 +3,16 @@ require('dotenv').config()
 let mongoose = require('mongoose');
 const Group = require('../models/Group').Group;
 const db = mongoose.connect( process.env.DATABASE_URL, { autoIndex: false , useNewUrlParser: true, useUnifiedTopology: true });
+const url = require('url');
+const BASE_URL = "https://ona-api.herokuapp.com/render/grp/"
 
+var giveUrl = (id) => {
 
+   var mUrl = url.resolve(BASE_URL, id).toString();
+
+   return mUrl;
+
+}
 
 
 exports.selectAll =  (req, res) => {
@@ -77,6 +85,10 @@ exports.addGroup = async (req, res) => {
             const group = new Group(req.body);
 
             group.save().then((data) => {
+
+                data.url = giveUrl(data._id.toString());
+                data.save().then((data) => {});
+
                 res.send(data);
             });
             

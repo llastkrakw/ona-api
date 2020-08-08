@@ -3,7 +3,16 @@ require('dotenv').config()
 let mongoose = require('mongoose');
 const Collection = require('../models/Collection').Collection;
 const db = mongoose.connect( process.env.DATABASE_URL, { autoIndex: false , useNewUrlParser: true, useUnifiedTopology: true });
+const url = require('url');
+const BASE_URL = "https://ona-api.herokuapp.com/render/col/"
 
+var giveUrl = (id) => {
+
+   var mUrl = url.resolve(BASE_URL, id).toString();
+
+   return mUrl;
+
+}
 
 exports.selectAll =  (req, res) => {
 
@@ -76,6 +85,10 @@ exports.addCollection = async (req, res) => {
             const collection = new Collection(req.body);
 
             collection.save().then((data) => {
+
+                data.url = giveUrl(data._id.toString());
+                data.save().then((data) => {});
+                
                 res.send(data);
             });
             

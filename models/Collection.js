@@ -21,6 +21,11 @@ var CollectionSchema = new Schema({
         required: true
     },
 
+    url: {
+        type: String,
+        required: false
+    },
+
     links: [{ type: Schema.Types.ObjectId, ref: 'Link' }],
 
     createAt: {
