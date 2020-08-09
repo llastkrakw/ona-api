@@ -48,7 +48,7 @@ exports.selectUser = async (req, res) => {
         db.then(() => {
             console.log("Connected to the database!");
 
-            User.findById(id).then((data) => {
+            User.findById(id).populate([{path : "links"}]).then((data) => {
                 if (!data)
                 res.status(404).send({ message: "Not found User with id " + id });
               else res.send(data);
