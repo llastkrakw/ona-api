@@ -17,7 +17,7 @@ exports.selectAll =  async (req, res) => {
         db.then(() => {
             console.log("Connected to the database!");
 
-            User.find({}).then((data) => {
+            User.find({}).populate([{path : "links"}]).then((data) => {
                 if (!data)
                    res.status(404).send({ message: "Not found Users"});
                 else res.send(data);
