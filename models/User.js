@@ -24,7 +24,7 @@ var UserSchema = new Schema({
         desc: "user password",
         trim: true,
         type: String,
-        required: false,
+        required: true,
         select: false,
         unique : true
     },
