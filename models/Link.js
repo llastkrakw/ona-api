@@ -35,7 +35,7 @@ var LinkShema = new Schema({
     createAt: {
         type: Date,
         required: true,
-        default: Date.now()
+        default: Date.now
     },
 
     cliked: {
