@@ -3,6 +3,7 @@ require('dotenv').config()
 
 let mongoose = require('mongoose');
 const Link = require('../models/Link').Link;
+const User = require('../models/User').UserModel;
 const ShortenLink = require('../models/ShortenLink').ShortenLink;
 const db = mongoose.connect( process.env.DATABASE_URL, { autoIndex: false , useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -93,6 +94,27 @@ exports.addLink = async (req, res) => {
             const link = new Link(req.body);
 
             link.save().then((data) => {
+
+                const userId = data.author;
+                const linkId = data._id;
+
+                User.findById(userId).then((data) => {
+
+                    data.links.push(linkId);
+                    User.findOneAndUpdate({"_id" : data._id}, data, (err, doc) => {
+
+                        if (err){ 
+                            console.log(err) 
+                        } 
+                        else{ 
+                            console.log("Original Doc : ",doc); 
+                        } 
+
+                    });
+
+                });
+                
+
                 res.send(data);
             });
             
@@ -106,6 +128,7 @@ exports.addLink = async (req, res) => {
     } catch (error) {
         res.status(500).send(error);
     }
+
 }
 
 exports.deleteLink = async (req, res) => {
