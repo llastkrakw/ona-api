@@ -39,8 +39,7 @@ var UserSchema = new Schema({
         type: Date,
         required: false,
         default: Date.now
-    }
-
+    },
 });
 
 exports.UserModel = mongoose.model('User', UserSchema, 'users');

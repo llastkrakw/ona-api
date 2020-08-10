@@ -20,6 +20,7 @@
     "homepage": "https://github.com/llastkrakw/ona-api#readme",
     "dependencies": {
         "atob": "^2.1.2",
+        "bcrypt": "^5.0.0",
         "btoa": "^1.2.1",
         "cookie-parser": "^1.4.5",
         "debug": "^4.1.1",
@@ -28,6 +29,7 @@
         "email-validator": "^2.0.4",
         "express": "^4.17.1",
         "is-url": "^1.2.4",
+        "jsonwebtoken": "^8.5.1",
         "moment": "^2.27.0",
         "mongodb": "^3.5.9",
         "mongoose": "^5.9.25",

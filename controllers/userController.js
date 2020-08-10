@@ -5,6 +5,7 @@ require('dotenv').config()
 let mongoose = require('mongoose');
 const User = require('../models/User').UserModel;
 const db = mongoose.connect( process.env.DATABASE_URL, { autoIndex: false , useNewUrlParser: true, useUnifiedTopology: true });
+const bcrypt = require('bcrypt');
 
 
 
@@ -77,6 +78,8 @@ exports.addUser = async (req, res) => {
             console.log("Connected to the database!");
 
             const user = new User(req.body);
+
+            user.password = user.password;
 
             user.save().then((data) => {
                 res.send(data);
