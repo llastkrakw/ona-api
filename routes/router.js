@@ -31,7 +31,7 @@ router.delete('/users/:id', userController.deleteUser);
 
 router.patch('/users/:id', userController.updateUser);
 
-router.get('/login', loginService.login);
+router.post('/login', loginService.login);
 
 /* Link */
 
