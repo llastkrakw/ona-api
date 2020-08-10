@@ -7,6 +7,7 @@ const linkController = require('../controllers/linkController');
 const collectionController = require('../controllers/collectionController');
 const userController = require('../controllers/userController');
 const groupController = require('../controllers/groupController');
+const loginService = require('../services/Login');
 
 router.use(function(req, res, next) {
     // .. some logic here .. like any other middleware
@@ -29,6 +30,8 @@ router.post('/users/user', userController.addUser);
 router.delete('/users/:id', userController.deleteUser);
 
 router.patch('/users/:id', userController.updateUser);
+
+router.get('/login', loginService.login);
 
 /* Link */
 

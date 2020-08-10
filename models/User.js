@@ -25,6 +25,7 @@ var UserSchema = new Schema({
         trim: true,
         type: String,
         required: true,
+        select: false,
         unique : true
     },
 
