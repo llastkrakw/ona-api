@@ -79,6 +79,7 @@ exports.addUser = async (req, res) => {
             const user = new User(req.body);
 
             user.save().then((data) => {
+                data._id = mongoose.Types.ObjectId();
                 res.send(data);
             });
             
