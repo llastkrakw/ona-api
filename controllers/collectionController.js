@@ -2,6 +2,7 @@ require('dotenv').config()
 
 let mongoose = require('mongoose');
 const Collection = require('../models/Collection').Collection;
+const User = require('../models/User').UserModel;
 const db = mongoose.connect( process.env.DATABASE_URL, { autoIndex: false , useNewUrlParser: true, useUnifiedTopology: true });
 const url = require('url');
 const BASE_URL = "https://ona-api.herokuapp.com/render/col/"
@@ -85,7 +86,27 @@ exports.addCollection = async (req, res) => {
             const collection = new Collection(req.body);
             collection.url = giveUrl(collection._id.toString());
 
-            collection.save().then((data) => {        
+            collection.save().then((data) => {      
+                
+                const userId = data.author;
+                const colId = data._id;
+
+                User.findById(userId).then((data) => {
+
+                    data.collections.push(colId);
+                    User.findOneAndUpdate({"_id" : data._id}, data, (err, doc) => {
+
+                        if (err){ 
+                            console.log(err) 
+                        } 
+                        else{ 
+                            console.log("Original Doc : ", doc); 
+                        } 
+
+                    });
+
+                });
+                
                 res.send(data);
             });
             

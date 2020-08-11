@@ -107,7 +107,7 @@ exports.addLink = async (req, res) => {
                             console.log(err) 
                         } 
                         else{ 
-                            console.log("Original Doc : ",doc); 
+                            console.log("Original Doc : ", doc); 
                         } 
 
                     });
