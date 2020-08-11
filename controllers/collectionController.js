@@ -23,7 +23,7 @@ exports.selectAll =  (req, res) => {
         db.then(() => {
             console.log("Connected to the database!");
 
-            Collection.find({}).then((data) => {
+            Collection.find({}).populate([{path : "links"}]).then((data) => {
                 if (!data)
                    res.status(404).send({ message: "Not found Collections"});
                 else res.send(data);
@@ -54,7 +54,7 @@ exports.selectCollection = async (req, res) => {
         db.then(() => {
             console.log("Connected to the database!");
 
-            Collection.findById(id).then((data) => {
+            Collection.findById(id).populate([{path : "links"}]).then((data) => {
                 if (!data)
                    res.status(404).send({ message: "Not found Collection with id " + id });
                 else res.send(data);
