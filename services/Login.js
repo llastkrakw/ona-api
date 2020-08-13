@@ -19,7 +19,13 @@ exports.login =  async (req, res) => {
 
             console.log(password);
 
-            User.findOne({"username" : name, "password" : password}).populate(["links", "collections", "groups"]).then((data) => {
+            User.findOne({"username" : name, "password" : password})
+            .populate("links")
+            .populate({
+                path: 'collections',
+                populate: { path: 'links' }
+              })
+            .then((data) => {
                 if (!data)
                    res.status(401).send({ message: "Not found Users"});
                 else res.send(data);
