@@ -58,7 +58,7 @@ exports.selectUser = async (req, res) => {
             .populate("links")
             .populate({
                 path: 'collections',
-                populate: { path: 'links', models : 'Link' }
+                populate: { path: 'links', model : 'Link' }
               }).then((data) => {
                 if (!data)
                 res.status(404).send({ message: "Not found User with id " + id });
