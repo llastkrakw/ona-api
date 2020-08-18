@@ -229,8 +229,9 @@ exports.updateLinkCollection = async (req, res) => {
                                                 console.log(err) 
                                             } 
                                             else{ 
-                                                console.log("Original Doc : ", doc); 
-                                                res.send(data);
+                                                data.populate([{path : "links"}]).execPopulate().then((data) => {
+                                                    res.send(data);
+                                                })
                                             } 
                     
                                         });
