@@ -61,6 +61,8 @@ router.delete('/collections/:id', collectionController.deleteCollection);
 
 router.patch('/collections/:id', collectionController.updateCollection);
 
+router.post('/collections/:id/:linkId', collectionController.updateLinkCollection);
+
 
 /* Group */
 
