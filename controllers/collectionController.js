@@ -162,7 +162,6 @@ exports.updateCollection = async (req, res) => {
         if(!req.body)
            res.status(404).send({ message: "Body Can not be empty !"});
    
-                //res.send("NOT IMPLEMENTED : updateUser");
                 const id = req.params.id;
 
                 db.then(() => {
@@ -190,51 +189,3 @@ exports.updateCollection = async (req, res) => {
 
 }
 
-exports.addLinkToCollection = async (req, res) => {
-
-    try {
-
-        //res.send("NOT IMPLEMENTED : updatecollection");
-
-        if(!req.body)
-           res.status(404).send({ message: "Body Can not be empty !"});
-   
-                //res.send("NOT IMPLEMENTED : updateUser");
-                const id = req.params.id;
-                const linkId = req.params.id;
-
-                db.then(() => {
-                    
-                    console.log("Connected to the database!");
-        
-                    Collection.findById(id).then((data) => {
-
-                        if (!data){
-                            res.status(404).send({ message: "Not found Collection with id " + id });
-                        }
-
-                        else{
-
-                            data.links.push(linkId);
-                            data.update().then((data) => {
-
-                                res.send(data);
-                                
-                            })
-                            
-                        }
-                    });
-            
-                    
-                  })
-                  .catch(err => {
-                    console.log("Cannot connect to the database!", err);
-                    process.exit();
-                  });
-        
-
-    } catch (error) {
-        res.status(500).send(error);
-    }
-
-}
