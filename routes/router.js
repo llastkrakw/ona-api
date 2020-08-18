@@ -61,6 +61,8 @@ router.delete('/collections/:id', collectionController.deleteCollection);
 
 router.patch('/collections/:id', collectionController.updateCollection);
 
+router.patch('/collections/:id/:linkId', collectionController.addLinkToCollection);
+
 /* Group */
 
 router.get('/groups', groupController.selectAll);
