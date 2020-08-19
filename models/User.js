@@ -25,8 +25,14 @@ var UserSchema = new Schema({
         trim: true,
         type: String,
         required: true,
-        select: false,
+        select: true,
         unique : true
+    },
+
+    salt: {
+        trim: true,
+        type: String,
+        select: false,
     },
 
     collections: [{ type: Schema.Types.ObjectId, ref: 'Collection'}],

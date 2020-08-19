@@ -6,6 +6,7 @@ let mongoose = require('mongoose');
 const User = require('../models/User').UserModel;
 const db = mongoose.connect( process.env.DATABASE_URL, { autoIndex: false , useNewUrlParser: true, useUnifiedTopology: true });
 const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 
 
@@ -89,10 +90,21 @@ exports.addUser = async (req, res) => {
 
             const user = new User(req.body);
 
-            user.password = user.password;
+            bcrypt.genSalt(saltRounds, function(err, salt) {
 
-            user.save().then((data) => {
-                res.send(data);
+                user.salt = salt;
+
+              bcrypt.hash(user.password, salt, function(err, hash) {
+                  // Store hash in your password DB.
+
+                    user.password = hash
+
+                    user.save().then((data) => {
+                      res.send(data);
+                    });
+
+              });
+              
             });
             
           })

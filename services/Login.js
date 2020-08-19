@@ -17,9 +17,7 @@ exports.login =  async (req, res) => {
             var name = req.body.username;
             var password = req.body.password;
 
-            console.log(password);
-
-            User.findOne({"username" : name, "password" : password})
+            User.findOne({"username" : name})
             .populate("links")
             .populate({
                 path: 'collections',
@@ -28,7 +26,21 @@ exports.login =  async (req, res) => {
             .then((data) => {
                 if (!data)
                    res.status(401).send({ message: "Not found Users"});
-                else res.send(data);
+                else{
+                 
+                      bcrypt.compare(password, data.password).then(function(result){
+
+
+                        if(result)
+                          res.send(data);
+                        else
+                          res.status(401).send({ message: "Not found Users"});
+
+
+                      });
+              
+
+                } 
             });
             
             
