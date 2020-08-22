@@ -281,13 +281,25 @@ exports.updateUserCollection = async (req, res) => {
                         else{
 
                             data.collections.push(colId);
-                            data.
-                            populate([{path : "links"}])
-                            .populate({
-                                path: 'collections',
-                                populate: { path: 'links' }
-                              }).execPopulate().then((data) => {
-                                res.send(data);
+
+                            User.findOneAndUpdate({"_id" : data._id}, data, { useFindAndModify: false}, (err, doc) => {
+
+                                if (err){ 
+                                    console.log(err) 
+                                } 
+                                else{ 
+
+                                    data.
+                                    populate([{path : "links"}])
+                                    .populate({
+                                        path: 'collections',
+                                        populate: { path: 'links' }
+                                      }).execPopulate().then((data) => {
+                                        res.send(data);
+                                    });
+                                    
+                                } 
+        
                             });
 
                         }
