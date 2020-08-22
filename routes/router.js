@@ -63,6 +63,8 @@ router.patch('/collections/:id', collectionController.updateCollection);
 
 router.post('/collections/:id/:linkId', collectionController.updateLinkCollection);
 
+router.post('/collections/fork/:id/:userId', collectionController.updateUserCollection);
+
 
 /* Group */
 

@@ -209,14 +209,14 @@ exports.updateLinkCollection = async (req, res) => {
                     Link.findById(linkId).then((data) => {
 
                         if(!data)
-                            res.status(404).send({ message: "Not found link with id " + id });
+                            res.status(404).send({ message: "Not found link with id " + linkId });
 
                         else{
 
                             Collection.findById(colId).then((data) => {
 
                                 if (!data)
-                                    res.status(404).send({ message: "Not found Collection with id " + id });
+                                    res.status(404).send({ message: "Not found Collection with id " + colId });
 
                                 else{
 
@@ -231,7 +231,7 @@ exports.updateLinkCollection = async (req, res) => {
                                             else{ 
                                                 data.populate([{path : "links"}]).execPopulate().then((data) => {
                                                     res.send(data);
-                                                })
+                                                });
                                             } 
                     
                                         });
@@ -254,5 +254,59 @@ exports.updateLinkCollection = async (req, res) => {
         res.status(500).send(error);
     }
 
+}
+
+
+exports.updateUserCollection = async (req, res) => {
+
+    try {
+
+        //res.send("NOT IMPLEMENTED : select collection " + req.params.id);
+
+        const colId = req.params.id;
+        const userId = req.params.userId;
+
+        db.then(() => {
+            console.log("Connected to the database!");
+
+            Collection.findById(colId).populate([{path : "links"}]).then((data) => {
+                if (!data)
+                   res.status(404).send({ message: "Not found Collection with id " + colId });
+                else{
+
+                    User.findById(userId).then((data) => {
+
+                        if (!data)
+                           res.status(404).send({ message: "Not found Users"});
+                        else{
+
+                            data.collections.push(colId);
+                            data.
+                            populate([{path : "links"}])
+                            .populate({
+                                path: 'collections',
+                                populate: { path: 'links' }
+                              }).execPopulate().then((data) => {
+                                res.send(data);
+                            });
+
+                        }
+
+                    });
+
+                }
+            });
+            
+            
+          })
+          .catch(err => {
+            console.log("Cannot connect to the database!", err);
+            process.exit();
+          });
+
+        
+    } catch (error) {
+        res.status(500).send(error);
+    }
 }
 
