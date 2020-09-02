@@ -280,7 +280,7 @@ exports.updateUserCollection = async (req, res) => {
                            res.status(404).send({ message: "Not found Users"});
                         else{
 
-                            if(!data.collections.contains(colId))
+                            if(!data.collections.includes(colId))
                                 data.collections.push(colId);
 
                             User.findOneAndUpdate({"_id" : data._id}, data, { useFindAndModify: false}, (err, doc) => {
