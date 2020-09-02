@@ -26,6 +26,15 @@ var LinkShema = new Schema({
         }
     },
 
+    shortenUrl: {
+        type: String,
+        required: false,
+        trim: true,
+        validate(value) {
+            if (!isURL(value)) throw new Error("Invalid Url")
+        }
+    },
+
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User',

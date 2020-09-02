@@ -2,6 +2,7 @@ require('dotenv').config()
 
 let mongoose = require('mongoose');
 const ShortenLink = require('../models/ShortenLink').ShortenLink;
+const Link = require('../models/Link').Link;
 const db = mongoose.connect( process.env.DATABASE_URL, { autoIndex: false , useNewUrlParser: true, useUnifiedTopology: true });
 
 const btoa = require('btoa');
@@ -97,6 +98,13 @@ exports.addShort = async (req, res) => {
 
             short.url = req.params.linkId;
             short.shortenUrl = url.resolve(base_url_short, short.hash);
+
+            
+            Link.findOneAndUpdate({"_id" : req.params.linkId}, { "shortenUrl" : short.shortenUrl}, { useFindAndModify: false}, (err, doc) => {
+                if (err){ 
+                    console.log(err) 
+                } 
+            });
 
             short.save().then((data) => {
                 res.send(data);
