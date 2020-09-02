@@ -10,7 +10,7 @@ const db = mongoose.connect( process.env.DATABASE_URL, { autoIndex: false , useN
 const btoa = require('btoa');
 const url = require('url');
 
-var hasher = (str) => {
+/*var hasher = (str) => {
 
     var hash = btoa(str);
     hash = hash.substr(0, 6);
@@ -22,7 +22,7 @@ var urlCtr = (hash) => {
 
     return newUrl = url.resolve(process.env.BASE_URL, hash);
 
-}
+}*/
 
 exports.selectAll =  (req, res) => {
 

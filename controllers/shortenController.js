@@ -4,6 +4,25 @@ let mongoose = require('mongoose');
 const ShortenLink = require('../models/ShortenLink').ShortenLink;
 const db = mongoose.connect( process.env.DATABASE_URL, { autoIndex: false , useNewUrlParser: true, useUnifiedTopology: true });
 
+const btoa = require('btoa');
+const url = require('url');
+
+const base_url_short = url.resolve(process.env.BASE_URL, "sh");
+
+var hasher = (str) => {
+
+    var hash = btoa(str);
+    hash = hash.substr(0, 6);
+
+    return hash;
+}
+
+var urlCtr = (hash) => {
+
+    return newUrl = url.resolve(process.env.BASE_URL, hash);
+
+}
+
 exports.selectAll =  (req, res) => {
 
     try {
@@ -71,9 +90,13 @@ exports.addShort = async (req, res) => {
         //res.send("NOT IMPLEMENTED : add short");
 
         db.then(() => {
+
             console.log("Connected to the database!");
 
             const short = new ShortenLink(req.body);
+
+            short.url = req.params.linkId;
+            short.shortenUrl = url.resolve(base_url_short, short.hash);
 
             short.save().then((data) => {
                 res.send(data);

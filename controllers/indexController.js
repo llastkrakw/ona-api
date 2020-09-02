@@ -15,16 +15,16 @@ exports.sender = async (req, res) => {
 
     try {
 
-        const hash = req.params.hash;
+        const hash = req.params.hash.trim();
 
         db.then(() => {
             console.log("Connected to the database!");
 
-            ShortenLink.findOne({"hash" : hash}).then((data) => {
+            ShortenLink.findOne({"hash" : hash}).populate({path : "url"}).then((data) => {
                 console.log(data)
                 if (!data)
                    res.status(404).send({ message: "Not found Links"});
-                else res.redirect(data.url);
+                else res.redirect(data.url.url);
             });
 
             

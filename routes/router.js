@@ -84,7 +84,7 @@ router.get('/shorts', shortenController.selectAll);
 
 router.get('/shorts/:id', shortenController.selectShort);
 
-router.post('/shorts/short', shortenController.addShort);
+router.post('/shorts/short/:linkId', shortenController.addShort);
 
 router.delete('/shorts/:id', shortenController.deleteShort);
 
