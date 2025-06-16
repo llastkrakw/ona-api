@@ -32,7 +32,7 @@
         "jsonwebtoken": "^8.5.1",
         "moment": "^2.27.0",
         "mongodb": "^3.5.9",
-        "mongoose": "^5.9.25",
+        "mongoose": "^6.13.6",
         "morgan": "^1.10.0",
         "url": "^0.11.0"
     },
